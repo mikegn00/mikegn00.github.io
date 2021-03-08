@@ -5,49 +5,93 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=ISO-8859-1"/>
     <style type="text/css">
-        @font-face{
+
+        @font-face {
             font-family: 'Michaels Weeb Font';
             src: url(CustomFontStyle.otf);
         }
+
         * {
-            font-family:'Michaels Weeb Font';
-        }
-        h1 {
-            color:red;
-            font-size:50px;
-            word-break:break-all;
+            /*font-family: 'Michaels Weeb Font';*/
+            /*background-color: #0a192f;*/
+            background-color: #282828;
+            word-break: break-all;
         }
 
+        h2{
+            color: #ffd43e;
+        }
+
+        #title {
+            color: #ffdc62;
+            background-color: #0a192f;
+            font-size: 50px;
+            word-break: break-all;
+        }
+
+        #subtitle {
+            background-color: #0a192f;
+            color: #ffdb4d;
+        }
+
+        #about {
+            padding: 60px 50px;
+        }
+        /*https://brittanychiang.com/ */
+
         .header {
-            background-color: #f1f1f1;
-            padding: 30px;
+            background-color: #0a192f;
+            padding: 100px 25px;
             text-align: center;
         }
         /* style navbar*/
 
         #navbar {
             overflow: hidden;
-            background-color:#0094ff;
+            background-color: #112240;
         }
-        /* navbar links*/
-        #navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px;
-            text-decoration: none;
+            /* navbar links*/
+            #navbar a {
+                float: left;
+                display: block;
+                color: white;
+                background-color: #112240;
+                text-align: center;
+                padding: 14px;
+                text-decoration: none;
+            }
+
+        p {
+            color: #ffdb4d;
         }
+
         #navbar a:hover {
-            background-color: #ddd;
-            color: black;
+            color: #ffdb4d;
         }
 
-        #navbar a.active {
-            background-color: #13e056;
-            color: white;
+        .arrows {
+            padding: 3px;
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            color: #ffdb4d;
+            display: inline-block;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
         }
-
+        ul li{
+            list-style: none;
+            color: #ffdb4d;
+        }
+        ul li::before {
+            content:'';
+            
+            color: #ffdb4d;
+            border-width: 0 2px 2px 0;
+            border-bottom: 2px solid black;
+            display: inline-block;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
 
         /* Page content */
         .content {
@@ -61,10 +105,10 @@
             width: 100%;
         }
 
-        /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
-        .sticky + .content {
-            padding-top: 60px;
-        }
+            /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+            .sticky + .content {
+                padding-top: 60px;
+            }
     </style>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <meta name="description" content="Portfolio"/>
@@ -72,30 +116,56 @@
     <title>Michael's Portfolio</title>
 </head>
 <body>
-    <div class="header">
-        <h2>My Portfolio</h2>
-        <hr />
+    
+    <div class="header text-center">
+        
+        <h1 id="title">I am Michael Morris</h1>
+        <h3 id="subtitle">I'm a software engineer.</h3>
+        
     </div>
+
     <div id="navbar">
         <a class="active" href="#home">Home</a>
         <a href="#about">About</a>
+        <a href="#project">Project</a>
         <a href="#contact">Contact</a>
     </div>
-    <div class="content">
-        <h3> Welcome to my portfolio</h3>
+    
+    <div id="about">
+        <h2>About Me</h2>
         <p>
-            Please navigate through my portfolio.<br />
-            Many thanks, <br />
-            Michael
+            Hello, I'm Michael, I am a software engineer based in UK.<br />
+            I enjoy creating new applications and support the user for <br />
+            Recently graduated from Masters in Advanced Computer Science in University of Essex.<br />
         </p>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSftW-4IvlooxWwiiXKQPBttA812V7lIym4XtkM8nEcxX-blJg/viewform?embedded=true"  height="717" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <p class="content-table">
+            Here are a few languages I've been working on:<br />
+
+        </p>
+        <ul>
+            <li>▹HTML</li>
+            <li>▹CSS</li>
+            <li>▹JavaScript</li>
+            <li>▹Java</li>
+            <li>▹Python</li>
+        </ul>
+        
+
     </div>
+
+    <div id="contact">
+
+        
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSftW-4IvlooxWwiiXKQPBttA812V7lIym4XtkM8nEcxX-blJg/viewform?embedded=true" height="717" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+
     <script>
+        //on-scroll sticky effect
         window.onscroll = function () { myFunction() };
 
         var navbar = document.getElementById("navbar");
         var sticky = navbar.offsetTop;
-
+        //func add sticky class
         function myFunction() {
             if (window.pageYOffset >= sticky) {
                 navbar.classList.add("sticky")
@@ -103,6 +173,30 @@
                 navbar.classList.remove("sticky");
             }
         }
+        
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    //Using Jquery for bottom to top button
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
     </script>
 </body>
 </html> 
